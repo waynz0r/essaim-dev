@@ -13,7 +13,7 @@ For more informations on Go module imports, please refer to the official [docume
 
 ## Installation
 ```
-go install essaim.dev/modgen/cmd/modgen@latest
+go install github.com/waynz0r/modgen/cmd/modgen@latest
 ```
 
 ## Usage

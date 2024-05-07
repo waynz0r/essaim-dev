@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"go.essaim.dev/modgen"
+	"github.com/waynz0r/modgen"
 )
 
 var (

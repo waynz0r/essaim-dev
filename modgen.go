@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"os"
 	"path"
+	"path/filepath"
 )
 
 // Generator contains the context required to generate a Go module import URL static site.
@@ -83,6 +84,10 @@ func (g *Generator) generateIndex(target string) error {
 func (g *Generator) generateModule(target string, module ModuleConfig) error {
 	b := bytes.Buffer{}
 	if err := g.moduleTmpl.Execute(&b, module.withHost(g.config.Host)); err != nil {
+		return err
+	}
+
+	if err := os.MkdirAll(filepath.Dir(target), 0755); err != nil {
 		return err
 	}
 
