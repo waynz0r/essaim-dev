@@ -15,6 +15,7 @@ type Config struct {
 
 // Config defines an individual module from a configuration file.
 type ModuleConfig struct {
+	URI     string `yaml:"uri"`
 	Path    string `yaml:"path"`
 	VCS     string `yaml:"vcs"`
 	RepoURL string `yaml:"repo-url"`

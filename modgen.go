@@ -2,6 +2,7 @@ package modgen
 
 import (
 	"bytes"
+	"fmt"
 	"html/template"
 	"os"
 	"path"
@@ -63,7 +64,11 @@ func (g *Generator) Generate(target string) error {
 	}
 
 	for _, module := range g.config.Modules {
-		modulePath := path.Join(target, module.Path+".html")
+		if module.URI == "" {
+			module.URI = module.Path
+		}
+
+		modulePath := path.Join(target, module.URI+".html")
 		if err := g.generateModule(modulePath, module); err != nil {
 			return err
 		}
@@ -87,6 +92,11 @@ func (g *Generator) generateModule(target string, module ModuleConfig) error {
 		return err
 	}
 
+	if module.URI == "" {
+		module.URI = module.Path
+	}
+
+	fmt.Printf("%#v\n", module)
 	if err := os.MkdirAll(filepath.Dir(target), 0755); err != nil {
 		return err
 	}
